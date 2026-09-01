@@ -1,0 +1,51 @@
+{
+  "name": "dotmd-skills",
+  "version": "1.0.0",
+  "description": "Install official DotMD Agent Skills for leading AI platforms.",
+  "type": "module",
+  "bin": {
+    "dotmd-skills": "bin/dotmd-skills.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "skills/*/SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules/**\"",
+    "check": "npm test && npm run lint:md && npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dotmd",
+    "agent-skills",
+    "ai",
+    "mcp",
+    "codex",
+    "claude",
+    "cursor",
+    "copilot",
+    "gemini"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DotMD-LLC/dotmd-skills.git"
+  },
+  "homepage": "https://github.com/DotMD-LLC/dotmd-skills#readme",
+  "bugs": {
+    "url": "https://github.com/DotMD-LLC/dotmd-skills/issues"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": false
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.23.2"
+  }
+}

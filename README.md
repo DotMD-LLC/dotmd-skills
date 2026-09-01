@@ -1,8 +1,29 @@
-# DotMD Skills & User Guides
+# DotMD Skills — Live Collaboration for People and AI
 
-> Write in Markdown. Collaborate in real time. Bring your AI.
+> Humans and AI editing together, live—without giving up Markdown.
 
-[DotMD](https://dotmd.co) is a Markdown-native workspace for documents, presentations, and spreadsheets. People and AI assistants can draft, review, organize, and publish work together while Markdown remains at the center.
+[DotMD](https://dotmd.co) is a live, Markdown-native collaboration workspace for Docs, Slides, and Sheets. Teammates can edit, comment, review, and see one another's presence in real time. Connect an AI through MCP and it can join the same workflow: find the right artifact, draft or revise content, respond to a review, update a tracker, or prepare a deck—within the access you grant.
+
+## AI is a collaborator, not a copy-and-paste box
+
+Most AI writing flows happen outside the document: copy content into a chat, lose its context, paste a result back, and hope nobody edited the original meanwhile. DotMD keeps the work where the team already is.
+
+- **Shared live context:** people and connected AI work against the current DotMD artifact.
+- **Visible teamwork:** collaborators can see active presence and review changes in the shared workspace.
+- **Docs, Slides, and Sheets:** one collaboration model across prose, presentations, and structured data.
+- **Comments and mentions:** ask for review, discuss uncertainty, and keep decisions beside the work.
+- **Permission-aware:** the AI operates only through the account and access explicitly connected to it.
+- **Review before consequence:** skills require confirmation before publishing, sharing, restoring, deleting, or broad overwrites.
+- **Markdown remains yours:** use portable content and GitHub sync rather than trapping knowledge in an AI chat.
+
+### Picture the workflow
+
+1. A teammate drafts a product brief in a DotMD Doc.
+2. An AI collaborator turns the approved outline into Slides and updates the launch Sheet.
+3. Reviewers comment in real time while the writer and AI address separate sections.
+4. The team verifies the result, resolves threads, and deliberately shares or publishes the final work.
+
+No stale attachment. No mystery rewrite. One live workspace with human judgment at the center.
 
 This public repository contains:
 
@@ -15,11 +36,18 @@ It contains **documentation only**. The DotMD application source is not part of 
 
 ## Start here
 
-1. Create or sign in to your account at [dotmd.co](https://dotmd.co).
-2. Read [Getting started](guides/getting-started.md).
-3. Choose a workflow from the [feature guide](guides/README.md).
-4. Give your AI assistant one of the skills in [`skills/`](skills/README.md).
-5. Adapt a recipe from [AI workflow examples](examples/prompt-recipes.md).
+1. Install all six DotMD skills for your AI platform:
+
+   ```bash
+   npx github:DotMD-LLC/dotmd-skills install --platform codex
+   ```
+
+2. Replace `codex` with `claude`, `cursor`, `copilot`, or `gemini` as needed.
+3. Create or sign in to your account at [dotmd.co](https://dotmd.co).
+4. Connect the AI client through **Settings → Apps & MCP** in DotMD.
+5. Try a workflow from [AI workflow examples](examples/prompt-recipes.md).
+
+For user-wide installs, add `--global`. For every supported platform in the current project, use `--platform all`. See the [five-platform setup guide](guides/install-ai-platforms.md).
 
 ## What you can do with DotMD
 
@@ -40,7 +68,21 @@ Feature availability can depend on your plan, role, workspace settings, client, 
 
 ## Skills for AI assistants
 
-The skills are plain Markdown instruction packages. They are deliberately client-neutral: use them with an assistant that supports custom skills or include the relevant `SKILL.md` in the assistant's context.
+The skills follow the open Agent Skills format and install with `npx`:
+
+```bash
+# Current project; all DotMD skills
+npx github:DotMD-LLC/dotmd-skills install --platform claude
+
+# Current user; one focused skill
+npx github:DotMD-LLC/dotmd-skills install --platform cursor --global --skill dotmd-collaboration
+
+# Preview without writing
+npx github:DotMD-LLC/dotmd-skills install --platform all --dry-run
+
+# Verify an installation
+npx github:DotMD-LLC/dotmd-skills doctor --platform codex
+```
 
 ```text
 skills/
@@ -94,6 +136,7 @@ More recipes: [examples/prompt-recipes.md](examples/prompt-recipes.md).
 
 - [All user guides](guides/README.md)
 - [All AI skills](skills/README.md)
+- [Install on five AI platforms](guides/install-ai-platforms.md)
 - [Prompt recipes](examples/prompt-recipes.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security](SECURITY.md)

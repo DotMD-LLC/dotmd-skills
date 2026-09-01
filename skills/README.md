@@ -11,6 +11,14 @@
 
 ## Use a skill
 
-Install the folder using your AI client's custom-skill mechanism, or provide the relevant `SKILL.md` as instructions. Then ask the assistant to use that skill for a named DotMD task.
+Install all skills into the current project:
+
+```bash
+npx github:DotMD-LLC/dotmd-skills install --platform codex
+```
+
+Supported platform IDs are `codex`, `claude`, `cursor`, `copilot`, and `gemini`. Add `--global` for a user-wide install, or `--skill dotmd-docs` to install one skill. Run `npx github:DotMD-LLC/dotmd-skills list` for the full catalogue and `npx github:DotMD-LLC/dotmd-skills doctor --platform codex` to verify discovery files.
+
+See [Install on five AI platforms](../guides/install-ai-platforms.md) for client-specific activation and verification.
 
 These files describe behavior; they do not contain credentials or grant access. Connect your assistant to DotMD separately through the supported Apps & MCP flow.

@@ -25,5 +25,6 @@ These guides are organized by jobs, not menus. Interface labels can evolve; use 
 ## Work with AI
 
 - [AI and MCP](ai-and-mcp.md)
+- [Install skills on five AI platforms](install-ai-platforms.md)
 
 For billing, legal, account recovery, and current plan details, use the help and settings surfaces at [dotmd.co](https://dotmd.co).
