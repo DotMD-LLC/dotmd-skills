@@ -32,28 +32,25 @@ This public repository contains:
 - prompt recipes for common jobs;
 - safety conventions for permissions, publishing, and AI-assisted edits.
 - a small installer that can configure the public DotMD MCP endpoint and hand
+
   sign-in to each AI client's native OAuth flow.
 
-It contains public documentation, skills, and installer code only. The DotMD
-application source is not part of this repository.
+It contains public documentation, skills, and installer code only. The DotMD application source is not part of this repository.
 
 ## Start here
 
 1. Install all six DotMD skills and connect the client to live DotMD:
 
-   ```bash
-   npx github:DotMD-LLC/dotmd-skills connect --platform codex
-   ```
+   `bash    npx github:DotMD-LLC/dotmd-skills connect --platform codex    `
 
 2. Replace `codex` with `claude`, `cursor`, `copilot`, or `gemini` as needed.
 3. Complete the DotMD sign-in and consent shown by your client. Codex and
-   Claude Code can open OAuth directly; other clients display their native Auth
-   action after configuration.
+
+   Claude Code can open OAuth directly; other clients display their native Auth    action after configuration.
+
 4. Try a workflow from [AI workflow examples](examples/prompt-recipes.md).
 
-For user-wide installs, add `--global`. For every supported platform in the
-current project, use `--platform all`; interactive OAuth is then completed in
-each client. See the [five-platform setup guide](guides/install-ai-platforms.md).
+For user-wide installs, add `--global`. For every supported platform in the current project, use `--platform all`; interactive OAuth is then completed in each client. See the [five-platform setup guide](guides/install-ai-platforms.md).
 
 ### What the connect command does
 
@@ -61,9 +58,7 @@ each client. See the [five-platform setup guide](guides/install-ai-platforms.md)
 Install six skills → configure https://dotmd.co/api/mcp → open native OAuth → confirm the connection
 ```
 
-The installer never requests, prints, or persists OAuth tokens. DotMD provides standard
-OAuth discovery and each client owns its browser callback, credential storage,
-refresh, and revocation flow. Existing unrelated MCP servers are preserved.
+The installer never requests, prints, or persists OAuth tokens. DotMD provides standard OAuth discovery and each client owns its browser callback, credential storage, refresh, and revocation flow. Existing unrelated MCP servers are preserved.
 
 ## What you can do with DotMD
 
