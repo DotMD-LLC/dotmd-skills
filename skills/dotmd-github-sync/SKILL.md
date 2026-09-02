@@ -1,6 +1,9 @@
 ---
+
 name: dotmd-github-sync
+
 description: Connect and synchronize DotMD Markdown folders with GitHub repositories, review status, handle protected branches, and resolve conflicts safely.
+
 ---
 
 # DotMD GitHub Sync
