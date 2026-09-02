@@ -6,11 +6,10 @@
 - a supported AI client with Agent Skills support;
 - a DotMD account;
 - a browser for DotMD OAuth sign-in if you want the assistant to act on live
+
   DotMD content.
 
-Review third-party skills before installing them. DotMD skills contain
-instructions, while the installer adds the public MCP endpoint and delegates
-sign-in to the client. It does not request, print, or persist OAuth tokens.
+Review third-party skills before installing them. DotMD skills contain instructions, while the installer adds the public MCP endpoint and delegates sign-in to the client. It does not request, print, or persist OAuth tokens.
 
 ## OpenAI Codex and ChatGPT desktop
 
@@ -42,9 +41,7 @@ Install skills, add the MCP server, and open DotMD OAuth:
 npx github:DotMD-LLC/dotmd-skills connect --platform codex
 ```
 
-Codex stores MCP configuration for the current Codex host. `codex mcp add`
-detects DotMD OAuth and opens the browser during connection. ChatGPT desktop,
-Codex CLI, and the IDE extension share the host configuration.
+Codex stores MCP configuration for the current Codex host. `codex mcp add` detects DotMD OAuth and opens the browser during connection. ChatGPT desktop, Codex CLI, and the IDE extension share the host configuration.
 
 ## Claude Code
 
@@ -70,8 +67,7 @@ Connect and authenticate:
 npx github:DotMD-LLC/dotmd-skills connect --platform claude
 ```
 
-The installer uses Claude Code's native HTTP MCP configuration and
-`claude mcp login dotmd`, which opens the DotMD OAuth flow in the browser.
+The installer uses Claude Code's native HTTP MCP configuration and `claude mcp login dotmd`, which opens the DotMD OAuth flow in the browser.
 
 ## Cursor
 
@@ -97,9 +93,7 @@ Connect and authenticate:
 npx github:DotMD-LLC/dotmd-skills connect --platform cursor
 ```
 
-The installer safely merges the `dotmd` URL into `.cursor/mcp.json` or the
-user configuration. Cursor CLI users can run `agent mcp login dotmd`; in the
-editor, select Auth for the DotMD server. Both use native OAuth discovery.
+The installer safely merges the `dotmd` URL into `.cursor/mcp.json` or the user configuration. Cursor CLI users can run `agent mcp login dotmd`; in the editor, select Auth for the DotMD server. Both use native OAuth discovery.
 
 ## GitHub Copilot
 
@@ -125,9 +119,7 @@ Connect and authenticate:
 npx github:DotMD-LLC/dotmd-skills connect --platform copilot
 ```
 
-The installer safely merges DotMD into `.github/mcp.json` or the personal
-Copilot MCP configuration. Open that file and select Auth above the DotMD
-server, then approve the browser consent screen.
+The installer safely merges DotMD into `.github/mcp.json` or the personal Copilot MCP configuration. Open that file and select Auth above the DotMD server, then approve the browser consent screen.
 
 ## Gemini CLI
 
@@ -155,8 +147,7 @@ gemini
 # Then enter: /mcp auth dotmd
 ```
 
-Gemini automatically discovers DotMD OAuth, opens a browser, and stores its own
-tokens after consent.
+Gemini automatically discovers DotMD OAuth, opens a browser, and stores its own tokens after consent.
 
 ## Install everywhere or select skills
 
@@ -178,8 +169,7 @@ On PowerShell, place the command on one line or use PowerShell's backtick contin
 
 ## Connect the client to live DotMD
 
-Skills teach the assistant how to work; MCP gives it an authorized connection
-to DotMD. The quickest path is:
+Skills teach the assistant how to work; MCP gives it an authorized connection to DotMD. The quickest path is:
 
 ```bash
 npx github:DotMD-LLC/dotmd-skills connect --platform codex
@@ -197,8 +187,7 @@ Verify both skills and MCP configuration:
 npx github:DotMD-LLC/dotmd-skills doctor --platform codex --mcp
 ```
 
-Use `mcp login --platform <name>` to repeat a scriptable native OAuth flow.
-For Cursor, Copilot, and Gemini, follow the Auth instruction printed by the CLI.
+Use `mcp login --platform <name>` to repeat a scriptable native OAuth flow. For Cursor, Copilot, and Gemini, follow the Auth instruction printed by the CLI.
 
 ## Update or repair
 
