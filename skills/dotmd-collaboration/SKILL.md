@@ -1,6 +1,9 @@
 ---
+
 name: dotmd-collaboration
+
 description: Coordinate DotMD comments, mentions, review threads, collaborators, roles, links, and publishing while keeping access changes explicit.
+
 ---
 
 # DotMD Collaboration
