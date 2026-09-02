@@ -27,6 +27,4 @@ Supported platform IDs are `codex`, `claude`, `cursor`, `copilot`, and `gemini`.
 
 See [Install on five AI platforms](../guides/install-ai-platforms.md) for client-specific activation and verification.
 
-These files describe behavior and contain no credentials. The optional
-`connect` command configures the public MCP endpoint, while the AI client owns
-OAuth sign-in, token storage, refresh, and revocation.
+These files describe behavior and contain no credentials. The optional `connect` command configures the public MCP endpoint, while the AI client owns OAuth sign-in, token storage, refresh, and revocation.
