@@ -1,6 +1,9 @@
 ---
+
 name: dotmd-sheets
+
 description: Work with DotMD Sheets data, formulas, formatting, sorting, filtering, and charts using range-aware, preview-first changes.
+
 ---
 
 # DotMD Sheets
