@@ -1,6 +1,9 @@
 ---
+
 name: dotmd-slides
+
 description: Create and improve DotMD Slides decks from briefs or documents, including narrative structure, slide content, speaker notes, accessibility, and presentation review.
+
 ---
 
 # DotMD Slides
