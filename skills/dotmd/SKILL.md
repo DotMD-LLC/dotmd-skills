@@ -1,6 +1,9 @@
 ---
+
 name: dotmd
+
 description: Work safely with DotMD files, Docs, Slides, Sheets, folders, templates, sharing, publishing, imports, exports, versions, AI, and connected apps.
+
 ---
 
 # DotMD
