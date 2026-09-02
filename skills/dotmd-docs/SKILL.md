@@ -1,6 +1,9 @@
 ---
+
 name: dotmd-docs
+
 description: Create, edit, organize, summarize, and review Markdown-native DotMD Docs while preserving meaning, structure, links, and collaboration context.
+
 ---
 
 # DotMD Docs
