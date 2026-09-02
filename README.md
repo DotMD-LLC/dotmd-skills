@@ -125,7 +125,7 @@ Every skill follows the same safety model:
 
 ## Example workflows
 
-### Turn meeting notes into a decision record
+### Turn meeting notes into a decision records
 
 > In DotMD, find my meeting notes from today. Create a new Doc called “Decision record — API versioning.” Summarize the decision, context, alternatives, owner, and follow-ups. Link back to the notes. Do not publish it.
 
