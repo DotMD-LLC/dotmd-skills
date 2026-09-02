@@ -12,17 +12,13 @@ Where available, configure a supported AI provider or compatible endpoint in Set
 
 ## Connect an MCP client
 
-For Codex, Claude Code, Cursor, GitHub Copilot, or Gemini CLI, install the
-skills and configure MCP together:
+For Codex, Claude Code, Cursor, GitHub Copilot, or Gemini CLI, install the skills and configure MCP together:
 
 ```bash
 npx github:DotMD-LLC/dotmd-skills connect --platform codex
 ```
 
-Replace `codex` with the client ID you use. The CLI configures the public DotMD
-Streamable HTTP endpoint, then starts or explains that client's native OAuth
-action. Tokens remain in the client credential store; the skills package does
-not request, print, or persist them.
+Replace `codex` with the client ID you use. The CLI configures the public DotMD Streamable HTTP endpoint, then starts or explains that client's native OAuth action. Tokens remain in the client credential store; the skills package does not request, print, or persist them.
 
 1. In DotMD, open **Settings → Apps & MCP** or the equivalent current settings area.
 2. Use the connection instructions shown for your client.
@@ -32,8 +28,7 @@ not request, print, or persist them.
 6. Test with a read-only request such as listing or finding a known item.
 7. Revoke the connected app or key when it is no longer needed.
 
-Never paste an API key or OAuth token into a document, issue, prompt library,
-shell history, screenshot, or repository.
+Never paste an API key or OAuth token into a document, issue, prompt library, shell history, screenshot, or repository.
 
 ## What an assistant can help with
 
