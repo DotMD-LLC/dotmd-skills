@@ -1,7 +1,7 @@
 {
   "name": "dotmd-skills",
-  "version": "1.0.0",
-  "description": "Install official DotMD Agent Skills for leading AI platforms.",
+  "version": "1.1.0",
+  "description": "Install DotMD Agent Skills and connect AI clients through MCP OAuth.",
   "type": "module",
   "bin": {
     "dotmd-skills": "bin/dotmd-skills.js"

@@ -31,23 +31,39 @@ This public repository contains:
 - ready-to-use AI skills for DotMD workflows;
 - prompt recipes for common jobs;
 - safety conventions for permissions, publishing, and AI-assisted edits.
+- a small installer that can configure the public DotMD MCP endpoint and hand
+  sign-in to each AI client's native OAuth flow.
 
-It contains **documentation only**. The DotMD application source is not part of this repository.
+It contains public documentation, skills, and installer code only. The DotMD
+application source is not part of this repository.
 
 ## Start here
 
-1. Install all six DotMD skills for your AI platform:
+1. Install all six DotMD skills and connect the client to live DotMD:
 
    ```bash
-   npx github:DotMD-LLC/dotmd-skills install --platform codex
+   npx github:DotMD-LLC/dotmd-skills connect --platform codex
    ```
 
 2. Replace `codex` with `claude`, `cursor`, `copilot`, or `gemini` as needed.
-3. Create or sign in to your account at [dotmd.co](https://dotmd.co).
-4. Connect the AI client through **Settings → Apps & MCP** in DotMD.
-5. Try a workflow from [AI workflow examples](examples/prompt-recipes.md).
+3. Complete the DotMD sign-in and consent shown by your client. Codex and
+   Claude Code can open OAuth directly; other clients display their native Auth
+   action after configuration.
+4. Try a workflow from [AI workflow examples](examples/prompt-recipes.md).
 
-For user-wide installs, add `--global`. For every supported platform in the current project, use `--platform all`. See the [five-platform setup guide](guides/install-ai-platforms.md).
+For user-wide installs, add `--global`. For every supported platform in the
+current project, use `--platform all`; interactive OAuth is then completed in
+each client. See the [five-platform setup guide](guides/install-ai-platforms.md).
+
+### What the connect command does
+
+```text
+Install six skills → configure https://dotmd.co/api/mcp → open native OAuth → confirm the connection
+```
+
+The installer never requests, prints, or persists OAuth tokens. DotMD provides standard
+OAuth discovery and each client owns its browser callback, credential storage,
+refresh, and revocation flow. Existing unrelated MCP servers are preserved.
 
 ## What you can do with DotMD
 
@@ -81,7 +97,16 @@ npx github:DotMD-LLC/dotmd-skills install --platform cursor --global --skill dot
 npx github:DotMD-LLC/dotmd-skills install --platform all --dry-run
 
 # Verify an installation
-npx github:DotMD-LLC/dotmd-skills doctor --platform codex
+npx github:DotMD-LLC/dotmd-skills doctor --platform codex --mcp
+
+# Install skills, configure MCP, and start native OAuth
+npx github:DotMD-LLC/dotmd-skills connect --platform codex
+
+# Configure MCP without reinstalling skills
+npx github:DotMD-LLC/dotmd-skills mcp configure --platform cursor
+
+# Repeat OAuth for a configured client
+npx github:DotMD-LLC/dotmd-skills mcp login --platform claude
 ```
 
 ```text

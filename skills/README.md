@@ -17,8 +17,16 @@ Install all skills into the current project:
 npx github:DotMD-LLC/dotmd-skills install --platform codex
 ```
 
+Install the skills and connect live DotMD through native MCP OAuth:
+
+```bash
+npx github:DotMD-LLC/dotmd-skills connect --platform codex
+```
+
 Supported platform IDs are `codex`, `claude`, `cursor`, `copilot`, and `gemini`. Add `--global` for a user-wide install, or `--skill dotmd-docs` to install one skill. Run `npx github:DotMD-LLC/dotmd-skills list` for the full catalogue and `npx github:DotMD-LLC/dotmd-skills doctor --platform codex` to verify discovery files.
 
 See [Install on five AI platforms](../guides/install-ai-platforms.md) for client-specific activation and verification.
 
-These files describe behavior; they do not contain credentials or grant access. Connect your assistant to DotMD separately through the supported Apps & MCP flow.
+These files describe behavior and contain no credentials. The optional
+`connect` command configures the public MCP endpoint, while the AI client owns
+OAuth sign-in, token storage, refresh, and revocation.
