@@ -26,6 +26,18 @@ Replace bracketed text with your details. Always name whether the assistant may 
 
 > Use the DotMD Collaboration skill. Review “\[item\]” as \[role/perspective\]. Add comments only—do not edit or resolve threads. Focus on \[criteria\]. Mention \[person\] only where a direct response is required.
 
+## Create an interactive Art
+
+> Use the DotMD Arts skill. Create an Art titled “\[title\]” for \[audience\] from “\[source item\].” Build \[mock/report/calculator\] with working local controls, responsive layout, visible focus, and readable light/dark appearance. Label sample data and simulated actions. Validate the package, save it, and read it back. Do not share or publish. Tell me whether you tested the rendered interactions.
+
+## Refine an Art
+
+> Read the current “\[Art title\]” and its revision ID. Change only \[requested behavior or visual detail\], preserving its content, design, and stable component IDs. Validate the replacement package, update using the current revision, and read back the saved result. If it changed meanwhile, reconcile the latest Art before retrying. Report comments that need a new target; do not resolve them automatically.
+
+## Review an Art with component comments
+
+> Use the DotMD Arts skill. Read “\[Art title\]” and inspect \[criteria\]. Add focused component comments on its current revision using the package's component IDs. Do not change the package, re-create existing threads, or publish. Separate issues you verified in the rendered Art from issues found in the package.
+
 ## Prepare for publishing
 
 > Inspect “\[item\]” for public release. Check sensitive information, internal links, draft comments, structure, accessibility, and media. Do not publish. Return blockers and a final pre-publication checklist.

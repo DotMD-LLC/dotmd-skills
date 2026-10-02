@@ -7,6 +7,7 @@ import test from 'node:test';
 import {
   PLATFORM_CONFIG,
   SKILL_NAMES,
+  inspectSkills,
   installSkills,
   resolveTargetRoot,
 } from '../lib/installer.js';
@@ -122,13 +123,71 @@ test('force replaces different content and identical content is unchanged', asyn
   assert.equal(second.unchanged.length, 1);
 });
 
-test('exports exactly the six published skill names', () => {
-  assert.deepEqual(SKILL_NAMES, [
-    'dotmd',
-    'dotmd-docs',
-    'dotmd-slides',
-    'dotmd-sheets',
-    'dotmd-collaboration',
-    'dotmd-github-sync',
-  ]);
+test('installs the Arts skill byte-for-byte across all five platforms', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'dotmd-skills-test-'));
+  const sourceRoot = path.join(root, 'source');
+  const cwd = path.join(root, 'project');
+  const skillBytes = Buffer.from('---\r\nname: dotmd-arts\r\n---\r\nCreate a visual café mock.\n');
+  await mkdir(path.join(sourceRoot, 'dotmd-arts'), { recursive: true });
+  await writeFile(path.join(sourceRoot, 'dotmd-arts', 'SKILL.md'), skillBytes);
+
+  const result = await installSkills({
+    platforms: ['codex', 'claude', 'cursor', 'copilot', 'gemini'],
+    skills: ['dotmd-arts'],
+    sourceRoot,
+    cwd,
+    home: path.join(root, 'home'),
+  });
+
+  assert.equal(result.installed.length, 5);
+  for (const target of ['.agents', '.claude', '.cursor', '.github', '.gemini']) {
+    assert.deepEqual(await readFile(path.join(cwd, target, 'skills', 'dotmd-arts', 'SKILL.md')), skillBytes);
+  }
+});
+
+test('the default catalog installs all seven published skills', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'dotmd-skills-test-'));
+  const sourceRoot = path.join(root, 'source');
+  const publishedSkills = ['dotmd', 'dotmd-docs', 'dotmd-slides', 'dotmd-sheets', 'dotmd-arts', 'dotmd-collaboration', 'dotmd-github-sync'];
+  for (const skill of publishedSkills) {
+    await mkdir(path.join(sourceRoot, skill), { recursive: true });
+    await writeFile(path.join(sourceRoot, skill, 'SKILL.md'), `${skill}\n`);
+  }
+
+  const result = await installSkills({
+    platforms: ['codex'], skills: SKILL_NAMES, sourceRoot,
+    cwd: path.join(root, 'project'), home: path.join(root, 'home'),
+  });
+
+  assert.equal(result.installed.length, 7);
+  for (const skill of publishedSkills) {
+    assert.equal(await readFile(path.join(root, 'project', '.agents', 'skills', skill, 'SKILL.md'), 'utf8'), `${skill}\n`);
+  }
+});
+
+test('inspection distinguishes current bytes, stale bytes, and missing files without writing', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'dotmd-skills-test-'));
+  const sourceRoot = path.join(root, 'source');
+  const cwd = path.join(root, 'project');
+  for (const skill of ['dotmd', 'dotmd-docs', 'dotmd-slides', 'dotmd-sheets', 'dotmd-arts', 'dotmd-collaboration', 'dotmd-github-sync']) {
+    await mkdir(path.join(sourceRoot, skill), { recursive: true });
+    await writeFile(path.join(sourceRoot, skill, 'SKILL.md'), 'current\n');
+  }
+  const currentFile = path.join(cwd, '.agents', 'skills', 'dotmd', 'SKILL.md');
+  const staleFile = path.join(cwd, '.agents', 'skills', 'dotmd-docs', 'SKILL.md');
+  await mkdir(path.dirname(currentFile), { recursive: true });
+  await mkdir(path.dirname(staleFile), { recursive: true });
+  await writeFile(currentFile, 'current\n');
+  await writeFile(staleFile, 'current\r\n');
+
+  const rows = await inspectSkills({ platforms: ['codex'], sourceRoot, cwd, home: path.join(root, 'home') });
+
+  const current = rows.find((row) => row.skill === 'dotmd');
+  const stale = rows.find((row) => row.skill === 'dotmd-docs');
+  const missing = rows.find((row) => row.skill === 'dotmd-arts');
+  assert.deepEqual({ installed: current.installed, current: current.current }, { installed: true, current: true });
+  assert.deepEqual({ installed: stale.installed, current: stale.current }, { installed: true, current: false });
+  assert.deepEqual({ installed: missing.installed, current: missing.current }, { installed: false, current: false });
+  assert.equal(await readFile(staleFile, 'utf8'), 'current\r\n');
+  await assert.rejects(readFile(path.join(cwd, '.agents', 'skills', 'dotmd-arts', 'SKILL.md')), /ENOENT/);
 });

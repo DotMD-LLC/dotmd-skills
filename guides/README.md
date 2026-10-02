@@ -13,6 +13,7 @@ These guides are organized by jobs, not menus. Interface labels can evolve; use 
 - [Docs](docs.md)
 - [Slides](slides.md)
 - [Sheets](sheets.md)
+- [Arts](arts.md)
 - [Import and export](import-export.md)
 
 ## Work together
@@ -25,6 +26,7 @@ These guides are organized by jobs, not menus. Interface labels can evolve; use 
 ## Work with AI
 
 - [AI and MCP](ai-and-mcp.md)
+- [MCP workflows](mcp-workflows.md)
 - [Install skills on five AI platforms](install-ai-platforms.md)
 
 For billing, legal, account recovery, and current plan details, use the help and settings surfaces at [dotmd.co](https://dotmd.co).

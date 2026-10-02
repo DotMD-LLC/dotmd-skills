@@ -39,3 +39,11 @@ Export Markdown when portability and source control matter. Use document or PDF-
 5. Review facts, links, tone, and formatting.
 
 Use the [DotMD Docs skill](../skills/dotmd-docs/SKILL.md).
+
+## Through MCP
+
+Create a Doc with `file_create` and `type: "doc"`, supplying initial Markdown in the same call. For an existing Doc, use `file_get` for metadata, `file_read` for content, then `apply_edits` for a focused change. Anchors use visible plain text within one text leaf, without Markdown markers. A `modify` replaces text within that node; it does not replace a whole multi-block section. An `add` inserts rich Markdown after its block, but appends at the document end if the anchor is missing. Check the intended anchor before insertion and the placement afterwards.
+
+For a review that should leave comments, read existing discussion with `comments_list`, then use `doc_review` for a batch of quoted notes. Check the returned anchor results: an ambiguous quote can leave a document-level comment instead of an inline highlight.
+
+Use `dotmd_guide` with `topic: "docs"` for rich Markdown examples. Upload images with `image_upload` and inspect attachments with `image_read`. `file_export` supports Markdown, print-ready HTML, and server-rendered PDF where the account permits it. See [MCP workflows](mcp-workflows.md) for the distinction between content editing and web controls.
