@@ -22,7 +22,7 @@ Discover the connected tools and their current schemas first. Availability depen
 | `doc_review` | Submit one review with `docId`, `summary`, and nonempty `comments: [{quote, body}]`. |
 | `comment_react` | React with `docId`, `threadId`, `emoji`, and optional `commentId`; omit `commentId` for the first comment. `on: false` removes the reaction. |
 | `comment_edit` / `comment_delete` | Change or retract an agent-authored comment using its returned `commentId`; never guess an ID or modify human comments. |
-| `art_comment_add` | Pin a note to an Art component using `docId`, current `revisionId`, `artId`, normalized `x`/`y`, and `body`. Read the Art first. |
+| `art_comment_add` | Pin a note using `docId`, current `revisionId`, `artId`, `x`/`y` in `[0, 1]` relative to the selected component's bounds, and `body`. `(0.5, 0.5)` targets its center. Read the Art first. |
 
 For an inline text comment, copy an exact, unique quote from one paragraph. Inspect the returned anchor result: a missing or ambiguous quote posts a document-level note, so do not claim it highlights a sentence. Use `doc_review` for a batch review; it gives one review notification and reports which notes anchored. The document has a limit of 50 unresolved agent comments, including review summaries. Prioritize useful notes if a batch exceeds it.
 
@@ -46,7 +46,7 @@ Use the existing user instruction as authorization for its named item, person, r
 
 | Tool | Access workflow |
 | --- | --- |
-| `file_collaborators` | Read direct grants on `docId` when the caller can edit. This is not a complete list of inherited access. |
+| `file_collaborators` | Read direct grants on `docId` when the caller can edit. It does not enumerate inherited folder/General access or link/public audiences; an empty result does not prove owner-only access. |
 | `file_share` | Grant or update a person's access with `docId`, `email`, and `role`: `viewer`, `commenter`, or `editor` (default `viewer`). |
 | `file_unshare` | Revoke a direct grant with `docId` and the returned `subjectId`. |
 | `files_shared_with_me` | Find items directly shared with the caller and their roles. |

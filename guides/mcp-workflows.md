@@ -18,9 +18,9 @@ Names below omit client-specific prefixes. Read the live input schema before cal
 | Manage a native chart | `sheet_chart` with `list`, `create`, `update`, or `delete` | Charts remain bound to cell ranges; list to obtain `chartId`. |
 | Update an Art | `art_read`, `art_generate`, `art_update` | Pass the current `revisionId`; a stale revision requires a fresh read. |
 | Add or inspect images | `image_upload`, `image_read` | Use the returned asset identifiers and durable URLs. |
-| Review or discuss | `comments_list`, `doc_review`, `comment_add`, `comment_reply`, `comment_resolve` | Inspect existing discussion and verify quote anchoring. Art component feedback uses `art_comment_add`. |
+| Review or discuss | `comments_list`, `doc_review`, `comment_add`, `comment_reply`, `comment_resolve` | Inspect existing discussion and verify quote anchoring. `art_comment_add` uses coordinates normalized within the selected component's bounds. |
 | Handle mentions and activity | `mentions_pending`, `mention_complete`, `mention_fail`, `notifications_list`, `notifications_update`, `updates` | Complete work before acknowledging it. Notifications are directed; updates are ambient activity. |
-| Share intentionally | `file_collaborators`, `file_share`, `file_unshare`, `file_link_share`, `namespace_members` | Share one file when that is the request; do not add namespace membership to achieve it. |
+| Share intentionally | `file_collaborators`, `file_share`, `file_unshare`, `file_link_share`, `namespace_members` | `file_collaborators` lists direct grants, not the complete audience. Share one file when requested; do not add namespace membership to achieve it. |
 | Organize and recover | Folder/file management, `file_delete`, `trash`, `versions` | `versions` reads history; it has no restore action. Trash purge is permanent. |
 | Export supported content | `file_export` | Markdown, print-ready HTML, or PDF; verify the output and account availability. |
 | Synchronize Markdown | GitHub status, connection, folder-link, and sync tools | Check exact capabilities and protected-branch status; never invent a PR or merge tool. |
