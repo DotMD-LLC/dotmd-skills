@@ -34,4 +34,6 @@ Name the item, person or audience, role, and desired action. An instruction such
 
 Through MCP, the assistant can manage direct document grants, namespace membership, and Personal link sharing. It can publish an owner-held Personal Art with `art_publish`. Folder permissions, General access, other publication types, and unpublishing use the web controls. A request to edit or review an item does not also authorize making it public or sending its link to someone else.
 
+`file_collaborators` returns direct grants only. It does not enumerate inherited folder/General access or link/public audiences, so an empty list does not prove owner-only access. To assess the audience, inspect the web Share dialog's **People with access**, General access, link, and publication controls.
+
 See [Collaboration](collaboration.md) and the [DotMD Collaboration skill](../skills/dotmd-collaboration/SKILL.md).

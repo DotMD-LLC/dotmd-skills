@@ -47,7 +47,7 @@ Give images appropriate alt text, controls accessible labels, keyboard access, v
 
 ## Review and publish
 
-- Read the current package before `art_comment_add`. Pass `docId`, its current `revisionId`, an `artId` from the package's `components`, normalized `x` and `y` between 0 and 1, and `body`. The tool requires commenter or editor access and refuses stale or missing targets.
+- Read the current package before `art_comment_add`. Pass `docId`, its current `revisionId`, an `artId` from the package's `components`, normalized `x` and `y` between 0 and 1 relative to that component's bounds, and `body`. `x` is the fraction of its width and `y` the fraction of its height; `(0.5, 0.5)` places the pin at the component's center. The tool requires commenter or editor access and refuses stale or missing targets.
 - Use the shared comment tools for listing, replies, reactions, and resolution within the user's requested review scope. Do not resolve human feedback merely because an edit was applied.
 - Component comments belong to a revision. After replacement, inspect affected threads; the web UI can explicitly reattach comments to the current Art. There is no dedicated MCP reattachment tool in the Arts tool set. Do not silently recreate or discard threads.
 - Use `art_publish` only when publishing this Art is already authorized. It accepts `docId` and returns a public URL. Only the owner of a personal Art can publish; an editor or a namespace Art cannot use this tool to create public state. Do not move an Art or broaden access to work around a refusal.

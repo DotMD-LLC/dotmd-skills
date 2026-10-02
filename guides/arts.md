@@ -61,7 +61,7 @@ Use a Doc, Sheet, supported integration, or a separate application when the work
 
 In the web app, use **Comment on a component** to select or click a target, or select text for feedback. Comments use the shared discussion channel, so reviewers can reply, react, resolve, and reopen threads with the permissions their role allows.
 
-Through MCP, `art_comment_add` takes `docId`, the current `revisionId`, a component `artId`, `x` and `y` between 0 and 1, and the comment body. Read the package to obtain the current component IDs. Stale revisions or missing targets are refused.
+Through MCP, `art_comment_add` takes `docId`, the current `revisionId`, a component `artId`, `x` and `y` between 0 and 1 relative to that component's bounds, and the comment body. `(0, 0)` is the component's top-left corner, `(1, 1)` its bottom-right corner, and `(0.5, 0.5)` its center. Read the package to obtain the current component IDs. Stale revisions or missing targets are refused.
 
 A component comment stays tied to its original revision. After a replacement, check **Comments needing a new target** and explicitly reattach affected comments in the web app. The Arts MCP tools do not include a reattachment operation.
 
