@@ -2,24 +2,24 @@
 
 > Humans and AI editing together, live—without giving up Markdown.
 
-[DotMD](https://dotmd.co) is a live, Markdown-native collaboration workspace for Docs, Slides, and Sheets. Teammates can edit, comment, review, and see one another's presence in real time. Connect an AI through MCP and it can join the same workflow: find the right artifact, draft or revise content, respond to a review, update a tracker, or prepare a deck—within the access you grant.
+[DotMD](https://dotmd.co) brings Markdown-native Docs, Slides, and Sheets together with interactive HTML Arts in one live workspace. Teammates can edit, comment, review, and see one another's presence in real time. Connect an AI through MCP and it can join the same workflow: find the right artifact, revise content, respond to a review, update a tracker, prepare a deck, or build a UX mock—within the access you grant.
 
-## AI is a collaborator, not a copy-and-paste box
+## People and AI in the same live workspace
 
 Most AI writing flows happen outside the document: copy content into a chat, lose its context, paste a result back, and hope nobody edited the original meanwhile. DotMD keeps the work where the team already is.
 
 - **Shared live context:** people and connected AI work against the current DotMD artifact.
 - **Visible teamwork:** collaborators can see active presence and review changes in the shared workspace.
-- **Docs, Slides, and Sheets:** one collaboration model across prose, presentations, and structured data.
+- **Docs, Slides, Sheets, and Arts:** one workspace for prose, presentations, structured data, and interactive visuals.
 - **Comments and mentions:** ask for review, discuss uncertainty, and keep decisions beside the work.
 - **Permission-aware:** the AI operates only through the account and access explicitly connected to it.
-- **Review before consequence:** skills require confirmation before publishing, sharing, restoring, deleting, or broad overwrites.
+- **Deliberate changes:** skills follow your requested editing and review scope; publishing, sharing, restoring, deleting, and broad replacements need authorization for the target.
 - **Markdown remains yours:** use portable content and GitHub sync rather than trapping knowledge in an AI chat.
 
 ### Picture the workflow
 
 1. A teammate drafts a product brief in a DotMD Doc.
-2. An AI collaborator turns the approved outline into Slides and updates the launch Sheet.
+2. An AI collaborator turns the approved outline into Slides, updates the launch Sheet, and creates an Art to explore the proposed experience.
 3. Reviewers comment in real time while the writer and AI address separate sections.
 4. The team verifies the result, resolves threads, and deliberately shares or publishes the final work.
 
@@ -30,23 +30,21 @@ This public repository contains:
 - practical user guides for DotMD features;
 - ready-to-use AI skills for DotMD workflows;
 - prompt recipes for common jobs;
-- safety conventions for permissions, publishing, and AI-assisted edits.
-- a small installer that can configure the public DotMD MCP endpoint and hand
-
-  sign-in to each AI client's native OAuth flow.
+- safety conventions for permissions, publishing, and AI-assisted edits;
+- a small installer that configures the public DotMD MCP endpoint and hands sign-in to each AI client's native OAuth flow.
 
 It contains public documentation, skills, and installer code only. The DotMD application source is not part of this repository.
 
 ## Start here
 
-1. Install all six DotMD skills and connect the client to live DotMD:
+1. Install all seven DotMD skills and connect the client to live DotMD:
 
-   `bash    npx github:DotMD-LLC/dotmd-skills connect --platform codex    `
+   ```bash
+   npx github:DotMD-LLC/dotmd-skills connect --platform codex
+   ```
 
 2. Replace `codex` with `claude`, `cursor`, `copilot`, or `gemini` as needed.
-3. Complete the DotMD sign-in and consent shown by your client. Codex and
-
-   Claude Code can open OAuth directly; other clients display their native Auth    action after configuration.
+3. Complete the DotMD sign-in and consent shown by your client. Codex and Claude Code can open OAuth directly; other clients display their native Auth action after configuration.
 
 4. Try a workflow from [AI workflow examples](examples/prompt-recipes.md).
 
@@ -55,7 +53,7 @@ For user-wide installs, add `--global`. For every supported platform in the curr
 ### What the connect command does
 
 ```text
-Install six skills → configure https://dotmd.co/api/mcp → open native OAuth → confirm the connection
+Install seven skills → configure https://dotmd.co/api/mcp → open native OAuth → confirm the connection
 ```
 
 The installer never requests, prints, or persists OAuth tokens. DotMD provides standard OAuth discovery and each client owns its browser callback, credential storage, refresh, and revocation flow. Existing unrelated MCP servers are preserved.
@@ -67,6 +65,7 @@ The installer never requests, prints, or persists OAuth tokens. DotMD provides s
 | Docs | Draft structured Markdown, format content, link ideas, and export work | [Docs](guides/docs.md) | [DotMD Docs](skills/dotmd-docs/SKILL.md) |
 | Slides | Turn Markdown into a deck, organize slides, add notes, and present | [Slides](guides/slides.md) | [DotMD Slides](skills/dotmd-slides/SKILL.md) |
 | Sheets | Build tables, use formulas, structure datasets, and create charts | [Sheets](guides/sheets.md) | [DotMD Sheets](skills/dotmd-sheets/SKILL.md) |
+| Arts | Create interactive UX mocks, visual reports, calculators, and demos | [Arts](guides/arts.md) | [DotMD Arts](skills/dotmd-arts/SKILL.md) |
 | Files | Organize documents with folders, favorites, recents, templates, and search | [Files and templates](guides/files-and-templates.md) | [DotMD](skills/dotmd/SKILL.md) |
 | Collaboration | Co-edit, comment, mention, review, and manage roles | [Collaboration](guides/collaboration.md) | [DotMD Collaboration](skills/dotmd-collaboration/SKILL.md) |
 | Sharing | Invite people, share links, and publish selected work | [Sharing and publishing](guides/sharing-and-publishing.md) | [DotMD](skills/dotmd/SKILL.md) |
@@ -76,6 +75,8 @@ The installer never requests, prints, or persists OAuth tokens. DotMD provides s
 | AI & MCP | Use built-in AI, your own provider, or a connected AI client | [AI and MCP](guides/ai-and-mcp.md) | [All skills](skills/README.md) |
 
 Feature availability can depend on your plan, role, workspace settings, client, or rollout. The DotMD interface is the source of truth for your account.
+
+See [MCP workflows](guides/mcp-workflows.md) for the current tools, focused editing sequences, and web/MCP differences.
 
 ## Skills for AI assistants
 
@@ -110,6 +111,7 @@ skills/
 ├── dotmd-docs/            Drafting and editing documents
 ├── dotmd-slides/          Building and reviewing presentations
 ├── dotmd-sheets/          Working with tabular data and formulas
+├── dotmd-arts/            Interactive visuals and revision-aware Art updates
 ├── dotmd-collaboration/   Comments, review, mentions, and sharing
 └── dotmd-github-sync/     Markdown repository synchronization
 ```
@@ -117,10 +119,10 @@ skills/
 Every skill follows the same safety model:
 
 1. Inspect the target and current permissions.
-2. Confirm ambiguous scope before a consequential action.
+2. Clarify ambiguous scope and apply existing authorization before consequential actions.
 3. Preserve the user's structure and meaning.
 4. Preview or summarize material edits.
-5. Never publish, share, delete, restore, or overwrite implicitly.
+5. Publish, share, delete, restore, or broadly replace content only within explicit authorization.
 6. Report exactly what changed and what still needs human review.
 
 ## Example workflows
@@ -141,6 +143,12 @@ Every skill follows the same safety model:
 
 > Review “Customer onboarding” in DotMD. Add focused comments for unclear claims and missing evidence. Do not directly edit the document or resolve existing threads.
 
+### Build an interactive UX mock
+
+> Use the DotMD Arts skill. Create an Art titled “Onboarding concept” from “Customer onboarding.” Make the steps, back button, and progress indicator work locally. Label sample data as a demo, check mobile layout and keyboard access, and save it without publishing. Report what you verified.
+
+The web app generates Art previews with the configured AI connection. Through MCP, the assistant authors the package and `art_generate` validates it; MCP creation and updates save directly. See [Arts](guides/arts.md) for the review and revision workflow.
+
 More recipes: [examples/prompt-recipes.md](examples/prompt-recipes.md).
 
 ## Human and AI collaboration principles
@@ -157,6 +165,7 @@ More recipes: [examples/prompt-recipes.md](examples/prompt-recipes.md).
 - [All user guides](guides/README.md)
 - [All AI skills](skills/README.md)
 - [Install on five AI platforms](guides/install-ai-platforms.md)
+- [MCP workflows](guides/mcp-workflows.md)
 - [Prompt recipes](examples/prompt-recipes.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security](SECURITY.md)

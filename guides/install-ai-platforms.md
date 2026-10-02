@@ -11,6 +11,8 @@
 
 Review third-party skills before installing them. DotMD skills contain instructions, while the installer adds the public MCP endpoint and delegates sign-in to the client. It does not request, print, or persist OAuth tokens.
 
+Each full install includes seven skills: `dotmd`, `dotmd-docs`, `dotmd-slides`, `dotmd-sheets`, `dotmd-arts`, `dotmd-collaboration`, and `dotmd-github-sync`. Arts teaches the assistant to create and revise visual work in DotMD.
+
 ## OpenAI Codex and ChatGPT desktop
 
 Install for the current project:
@@ -151,7 +153,7 @@ Gemini automatically discovers DotMD OAuth, opens a browser, and stores its own 
 
 ## Install everywhere or select skills
 
-Install all DotMD skills for all five clients in the current project:
+Install all seven DotMD skills for all five clients in the current project:
 
 ```bash
 npx github:DotMD-LLC/dotmd-skills install --platform all
@@ -191,7 +193,22 @@ Use `mcp login --platform <name>` to repeat a scriptable native OAuth flow. For 
 
 ## Update or repair
 
-Run the install command again. Identical skills are left unchanged. If a local skill differs, the installer refuses to overwrite it; inspect your customization, then use `--force` only when replacement is intentional.
+Check installed skill files against the package being run:
+
+```bash
+npx github:DotMD-LLC/dotmd-skills doctor --platform codex
+```
+
+`OK` means the installed `SKILL.md` matches the bundled file byte-for-byte. `STALE` means it differs, including local customizations; `MISSING` means it is absent. Doctor exits with a failure status when any skill is stale or missing. It reads files without changing skills or MCP configuration.
+
+Run the install command again to add missing skills, including Arts. Identical files are left unchanged. If a local skill differs, inspect and save any customizations before replacing it with `--force`:
+
+```bash
+npx github:DotMD-LLC/dotmd-skills install --platform codex --force
+npx github:DotMD-LLC/dotmd-skills doctor --platform codex
+```
+
+Use the same `--platform` and `--global` scope as the original installation. `install --force` replaces the selected DotMD `SKILL.md` files and preserves other files and MCP settings.
 
 Preview first:
 

@@ -1,27 +1,37 @@
 # Sharing and publishing
 
-Sharing and publishing are different access decisions.
+Docs, Slides, Sheets, and Arts use shared access controls. A document link, an access grant, and a published page are separate things. Copying an ordinary item link does not change who can open it.
 
-## Invite people directly
+## Share with people
 
-Open Share, add the intended person, and choose Viewer, Commenter, or Editor. Recheck the address and role before confirming. Remove access when it is no longer needed.
+Open **Share**, add the intended person, and choose **Viewer**, **Commenter**, or **Editor**. Personal items accept an email address; team items let you choose namespace members. Check **People with access** afterwards.
 
-## Share with a link
+Access can come directly, through a folder, or through General access. Removing a direct grant does not remove an inherited grant. Change the source shown in the access list when you need to remove that access.
 
-Link access lets eligible recipients open an item through its link. Treat the link as sensitive when it grants access. Do not paste it into public channels unless that is intentional.
+## Team General access
 
-## Publish to the web
+Team items offer **Restricted**, **Everyone in the namespace**, and, when applicable, **Everyone in this folder**. General access can use **Inherit** or a specific role, capped by each person's namespace role.
 
-Publishing creates a public reading surface for supported content. Before publishing:
+A namespace groups people; a folder organizes content and can supply inherited permissions. Membership is required for team content, but it does not open every restricted item. Namespace Admin manages membership without automatically gaining access to every item. **Private** remains owner-only.
 
-1. confirm the item and owner;
-2. remove secrets, private names, internal links, and draft comments;
-3. check headings, media, embeds, and accessibility;
-4. preview on desktop and a narrow screen;
-5. verify the final public URL in a signed-out browser.
+## Anyone with the link
 
-Unpublishing changes public availability; it does not guarantee that third-party caches or previous copies disappear immediately.
+On a Personal item you own, enable **Anyone with the link**, choose a role, and wait for the saved state before copying the link. Viewer access allows reading without signing in; commenting or editing requires sign-in. Team items use namespace, folder, and direct access rather than public link sharing.
 
-## Safe AI rule
+Turn the link off to revoke access supplied by that link. Direct grants and publication remain independent, so check them too if the goal is to reduce the item's audience.
 
-An AI assistant must never broaden access, create a public link, publish, or unpublish based on an implied goal. Require explicit instruction naming the target and desired access state, then verify the result.
+## Publish
+
+Personal Docs offer **Publish as blog**. Personal Slides, Sheets, and Arts offer **Publish to web** where the Share dialog supports it. Use the controls available for the item and your ownership permissions.
+
+Review the content and its media for private information, check the public reading layout, then enable publishing. Wait for **Published** and open the returned public link. Verify it signed out on desktop and a narrow screen when possible. Publishing does not require enabling an editable public link first.
+
+Unpublishing changes the public page's availability. It does not revoke direct or link access, and previous copies or third-party caches may remain.
+
+## Ask an AI assistant
+
+Name the item, person or audience, role, and desired action. An instruction such as “Share this Sheet with Sam as a Commenter” authorizes that specific change; the assistant should not ask for the same authorization again.
+
+Through MCP, the assistant can manage direct document grants, namespace membership, and Personal link sharing. It can publish an owner-held Personal Art with `art_publish`. Folder permissions, General access, other publication types, and unpublishing use the web controls. A request to edit or review an item does not also authorize making it public or sending its link to someone else.
+
+See [Collaboration](collaboration.md) and the [DotMD Collaboration skill](../skills/dotmd-collaboration/SKILL.md).

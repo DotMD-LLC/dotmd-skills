@@ -32,7 +32,11 @@ Never paste an API key or OAuth token into a document, issue, prompt library, sh
 
 ## What an assistant can help with
 
-Depending on access and current capabilities, an assistant can help find and organize files; create and edit Docs, Slides, or Sheets; review content; work with comments and mentions; manage folders; export artifacts; and coordinate GitHub-synced Markdown.
+Depending on access and current capabilities, an assistant can help find and organize files; create and edit Docs, Slides, Sheets, or Arts; review content; work with comments and mentions; manage folders; export supported artifacts; and coordinate GitHub-synced Markdown.
+
+Read [MCP workflows](mcp-workflows.md) for current tool routing and web-only boundaries. The `dotmd_guide` tool explains `overview`, `docs`, `slides`, `sheets`, `arts`, `charts`, `blog`, `collaboration`, and `sharing` with examples. Tool names may have a client-specific prefix; inspect the connected schemas instead of inventing a tool or action.
+
+For public DotMD articles, use `blog_list` followed by `blog_read`. These are read-only discovery tools. Publishing a customer document does not automatically register it in the public blog feed.
 
 ## Prompt contract
 
@@ -46,4 +50,6 @@ For reliable work, state:
 
 ## Permission model
 
-Connected AI does not gain universal access. It operates as the authorized user or credential and remains subject to DotMD permissions. Treat destructive and access-changing operations as confirmation-required even if a client can technically call them.
+Connected AI operates as the authorized user or credential and remains subject to DotMD permissions. Read-only credentials cannot write, and a read-write credential still needs access to the target. Namespace membership, individual shares, folder/general access, link access, and public publishing are distinct. Private content remains owner-only until access is explicitly granted.
+
+Destructive and access-changing operations require explicit user intent. An instruction that already names the action, target, and audience supplies that authorization; clarify missing scope before acting.

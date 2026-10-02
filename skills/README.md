@@ -1,11 +1,14 @@
 # DotMD AI skills
 
+Seven skills cover Docs, Slides, Sheets, Arts, and the collaboration and connection workflows around them.
+
 | Skill | Best for |
 | --- | --- |
 | [dotmd](dotmd/SKILL.md) | General DotMD routing and safety |
 | [dotmd-docs](dotmd-docs/SKILL.md) | Drafting, editing, and reviewing Docs |
 | [dotmd-slides](dotmd-slides/SKILL.md) | Presentation narratives and deck QA |
 | [dotmd-sheets](dotmd-sheets/SKILL.md) | Structured data, formulas, and charts |
+| [dotmd-arts](dotmd-arts/SKILL.md) | Interactive visuals, UX mocks, and safe Art revisions |
 | [dotmd-collaboration](dotmd-collaboration/SKILL.md) | Comments, mentions, roles, and review |
 | [dotmd-github-sync](dotmd-github-sync/SKILL.md) | GitHub-connected Markdown workflows |
 

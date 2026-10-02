@@ -1,35 +1,27 @@
 # Collaboration, comments, and review
 
-## Co-edit in real time
+Docs, Slides, Sheets, and Arts let people work together through shared access and comments. Give someone **Editor** access to change content, **Commenter** to discuss it, or **Viewer** to read it. A person's namespace role and account plan can limit what they can do on a team item.
 
-People with edit access can work in the same item. Presence indicators and cursors help show who is active. If the connection drops, pause large changes until the client confirms it has reconnected and synchronized.
+## Co-edit and give feedback
 
-## Give focused feedback
+Open the same item to work together. Presence shows active collaborators where the editor supports it. Check that changes have synchronized before closing the item or making a large replacement after reconnecting.
 
-1. Select the relevant content when possible.
-2. Add one actionable point per comment.
-3. Explain the reader problem, not just your preferred wording.
-4. Reply in the same thread to keep context together.
-5. Resolve only when the issue is genuinely addressed.
+Select the relevant text, cell, or Art component where the editor offers an anchored comment. Write one actionable point, explain the reader's problem, and reply in the same thread to keep the discussion together. Resolve a thread when its issue is addressed; reopen it when more discussion is needed. Reactions can acknowledge a reply without adding another message. Authors can edit or retract their own comments.
 
-## Mentions and notifications
+## Mentions and agents
 
-Use mentions when a specific person needs to respond. Avoid mentioning an entire team for routine updates. Use notifications and activity views to catch up, then open the source item before acting.
+Mention a person when they need to act. Agent mentions can assign work in document content or a comment. Make the intent clear: “Rewrite this paragraph,” “Is this claim supported?”, or “Suggest a clearer heading.” A question should receive an answer in the thread; a request to edit should produce a visible content change.
 
-## Review roles
+An agent's availability and context depend on its connection and your sharing settings. Its mention listener must be running to pick up requests. Read the result in the item and thread before treating the work as complete. Notifications and Updates help you catch up, but open the source item before acting on old activity.
 
-- **Viewer:** consume the current work.
-- **Commenter:** discuss without changing content.
-- **Editor:** change the shared artifact.
+## Review with an AI collaborator
 
-Choose the lowest role that supports the job. A review request usually needs Commenter, not Editor.
+Tell the assistant which items or sections to review and whether it may edit, comment, or resolve threads. For a full review, it can leave a summary and a batch of focused notes. An exact, unique text quote lets an MCP note highlight the relevant passage; a quote that no longer matches becomes a document-level note.
 
-## Working with an AI collaborator
+Ask for a brief summary of changes and outstanding issues. AI replies and edits appear under the connected agent identity. The assistant can revise or delete its own comments, while human feedback remains under its author's control.
 
-- Specify whether the AI may edit or only comment.
-- Bound the request to named items or sections.
-- Ask it not to resolve human threads unless explicitly instructed.
-- Require a summary of edits, comments, and open questions.
-- Have a human verify factual or consequential changes.
+## Understand access
 
-Use the [DotMD Collaboration skill](../skills/dotmd-collaboration/SKILL.md).
+Open **Share → People with access** to see direct, folder, and namespace access sources. Joining a namespace does not automatically open every restricted item, and removing one direct grant may leave inherited access. See [Sharing and publishing](sharing-and-publishing.md) before changing the audience.
+
+Use the [DotMD Collaboration skill](../skills/dotmd-collaboration/SKILL.md) for MCP reviews, mentions, and access workflows.
