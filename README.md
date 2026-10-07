@@ -65,7 +65,7 @@ The installer never requests, prints, or persists OAuth tokens. DotMD provides s
 | Docs | Draft structured Markdown, format content, link ideas, and export work | [Docs](guides/docs.md) | [DotMD Docs](skills/dotmd-docs/SKILL.md) |
 | Slides | Turn Markdown into a deck, organize slides, add notes, and present | [Slides](guides/slides.md) | [DotMD Slides](skills/dotmd-slides/SKILL.md) |
 | Sheets | Build tables, use formulas, structure datasets, and create charts | [Sheets](guides/sheets.md) | [DotMD Sheets](skills/dotmd-sheets/SKILL.md) |
-| Arts | Create interactive UX mocks, visual reports, calculators, and demos | [Arts](guides/arts.md) | [DotMD Arts](skills/dotmd-arts/SKILL.md) |
+| Arts | Create interactive visuals and procedural 3D, export accepted PNG/HTML copies, and embed with owner opt-in | [Arts](guides/arts.md) | [DotMD Arts](skills/dotmd-arts/SKILL.md) |
 | Files | Organize documents with folders, favorites, recents, templates, and search | [Files and templates](guides/files-and-templates.md) | [DotMD](skills/dotmd/SKILL.md) |
 | Collaboration | Co-edit, comment, mention, review, and manage roles | [Collaboration](guides/collaboration.md) | [DotMD Collaboration](skills/dotmd-collaboration/SKILL.md) |
 | Sharing | Invite people, share links, and publish selected work | [Sharing and publishing](guides/sharing-and-publishing.md) | [DotMD](skills/dotmd/SKILL.md) |
@@ -74,7 +74,7 @@ The installer never requests, prints, or persists OAuth tokens. DotMD provides s
 | GitHub | Keep Markdown folders synchronized with a repository | [GitHub sync](guides/github-sync.md) | [DotMD GitHub Sync](skills/dotmd-github-sync/SKILL.md) |
 | AI & MCP | Use built-in AI, your own provider, or a connected AI client | [AI and MCP](guides/ai-and-mcp.md) | [All skills](skills/README.md) |
 
-Feature availability can depend on your plan, role, workspace settings, client, or rollout. The DotMD interface is the source of truth for your account.
+Feature availability can depend on your plan, role, workspace settings, client, or rollout. The DotMD interface is the source of truth for your account. Discover the connected MCP catalog and schemas before using a tool. This source/package candidate's checks do not establish hosted web, MCP, or renderer deployment, or npm publication; installing skills does not deploy product features.
 
 See [MCP workflows](guides/mcp-workflows.md) for the current tools, focused editing sequences, and web/MCP differences.
 
@@ -111,7 +111,7 @@ skills/
 ├── dotmd-docs/            Drafting and editing documents
 ├── dotmd-slides/          Building and reviewing presentations
 ├── dotmd-sheets/          Working with tabular data and formulas
-├── dotmd-arts/            Interactive visuals and revision-aware Art updates
+├── dotmd-arts/            Interactive visuals, 3D, exports, and opt-in embedding
 ├── dotmd-collaboration/   Comments, review, mentions, and sharing
 └── dotmd-github-sync/     Markdown repository synchronization
 ```
@@ -148,6 +148,8 @@ Every skill follows the same safety model:
 > Use the DotMD Arts skill. Create an Art titled “Onboarding concept” from “Customer onboarding.” Make the steps, back button, and progress indicator work locally. Label sample data as a demo, check mobile layout and keyboard access, and save it without publishing. Report what you verified.
 
 The web app generates Art previews with the configured AI connection. Through MCP, the assistant authors the package and `art_generate` validates it; MCP creation and updates save directly. See [Arts](guides/arts.md) for the review and revision workflow.
+
+When advertised by the connected catalog, `art_runtime_list` discovers exact approved 3D declarations and `art_starter` prepares a proposal without calling a model or saving. Web proposals save through **Accept Art**. Arts exports use the accepted revision, and owner-only embedding preserves each viewer's access without sharing or publishing the Art.
 
 More recipes: [examples/prompt-recipes.md](examples/prompt-recipes.md).
 

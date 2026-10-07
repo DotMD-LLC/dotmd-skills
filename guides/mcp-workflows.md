@@ -4,7 +4,7 @@ The DotMD MCP endpoint connects an assistant to the same artifacts people use in
 
 ## Choose the right tool
 
-Names below omit client-specific prefixes. Read the live input schema before calling a tool; it defines available actions, roles, ranges, and account restrictions.
+Names below omit client-specific prefixes. Discover the connected catalog and read the live input schema before calling a tool; it defines available actions, roles, ranges, and account restrictions. An updated skills source or package candidate does not prove hosted deployment or npm publication.
 
 | Task | Supported workflow | Important boundary |
 | --- | --- | --- |
@@ -17,12 +17,16 @@ Names below omit client-specific prefixes. Read the live input schema before cal
 | Configure Sheet headers | `sheet_configure` | Set `firstRowIsHeader` deliberately. |
 | Manage a native chart | `sheet_chart` with `list`, `create`, `update`, or `delete` | Charts remain bound to cell ranges; list to obtain `chartId`. |
 | Update an Art | `art_read`, `art_generate`, `art_update` | Pass the current `revisionId`; a stale revision requires a fresh read. |
+| Prepare procedural 3D | `art_runtime_list`, `art_starter` | Use exact returned runtime declarations; a starter is a proposal without a model call or save. |
+| Embed an Art | `art_embedding`, then `art_read` | Only the owner can opt in; canonical embedding references grant no access and do not publish. |
 | Add or inspect images | `image_upload`, `image_read` | Use the returned asset identifiers and durable URLs. |
 | Review or discuss | `comments_list`, `doc_review`, `comment_add`, `comment_reply`, `comment_resolve` | Inspect existing discussion and verify quote anchoring. `art_comment_add` uses coordinates normalized within the selected component's bounds. |
 | Handle mentions and activity | `mentions_pending`, `mention_complete`, `mention_fail`, `notifications_list`, `notifications_update`, `updates` | Complete work before acknowledging it. Notifications are directed; updates are ambient activity. |
 | Share intentionally | `file_collaborators`, `file_share`, `file_unshare`, `file_link_share`, `namespace_members` | `file_collaborators` lists direct grants, not the complete audience. Share one file when requested; do not add namespace membership to achieve it. |
 | Organize and recover | Folder/file management, `file_delete`, `trash`, `versions` | `versions` reads history; it has no restore action. Trash purge is permanent. |
-| Export supported content | `file_export` | Markdown, print-ready HTML, or PDF; verify the output and account availability. |
+| Export supported content | `file_export` | Docs, Slides, and Sheets retain Markdown, print-ready HTML, or PDF; Arts use accepted-revision PNG or standalone HTML on an eligible account. |
+| Read an Arts export status | `file_export_get_job` | Explicitly read one authorized export status; do not poll. |
+| Download an Arts export | `file_export_download` | Retrieve bounded byte chunks from a completed authorized export; access and eligibility are rechecked. |
 | Synchronize Markdown | GitHub status, connection, folder-link, and sync tools | Check exact capabilities and protected-branch status; never invent a PR or merge tool. |
 | Read public articles | `blog_list`, `blog_read` | Public, read-only content; a published file is not automatically a blog entry. |
 
@@ -40,6 +44,14 @@ If a scoped anchor or Art revision no longer matches, read again and account for
 - **Arts:** the web AI surface generates a reviewable proposal. MCP `art_generate` validates and canonicalizes a package that the assistant has already authored; it does not call a model. Updating requires the current revision. Reattaching comments from an earlier revision is an explicit web review action.
 - **History:** the web interface can restore a selected version. MCP `versions` lists or reads previous content; an authorized recovery must reapply the intended content through a supported writer.
 - **Publishing:** use the web Publish flow for Docs, Slides, and Sheets. `art_publish` publishes an Art only for its owner in Personal. Link sharing is separate from publishing.
+
+## Arts export and embedding
+
+Read the accepted Art before exporting. Pass its current `revisionId`, `docId`, and `format: "png"` or `"html"` to `file_export`. PNG dimensions are integers from 320 to 4096, capped at 8,388,608 pixels; `appearance` is `original`, `light`, `paper`, `mist`, `dark`, `black`, or `dusk`. HTML needs no dimensions. A changed revision is refused, and PNG starts a fresh accepted scene rather than capturing an unsaved camera position.
+
+Arts results contain job metadata. Use returned IDs with `file_export_get_job({docId, jobId})` for an explicit status read if needed. Once ready, use `file_export_download({docId, jobId, offset, length})`, decoding and concatenating bytes in offset order until `eof`, advancing by returned `byteLength`. Default chunks are 65,536 bytes and each requested chunk is at most 262,144 bytes. Do not join base64 strings or invent a download URL. Inspect the completed file before reporting it usable; delivered copies cannot be revoked.
+
+Only the Art owner may enable embedding through `art_embedding({docId, enabled: true})`. Read `embedding.docEmbedUrl` from `art_read` for a Doc iframe; every viewer still needs Art access. Use returned `embedding.externalIframeHtml` only for an already published personal Art. Namespace Arts support internal embedding with current access. Embedding neither shares nor publishes; making a Doc public does not make its Art public. Disabling embedding stops future authorized loads, while already delivered bytes remain with recipients.
 
 ## Verify completion
 

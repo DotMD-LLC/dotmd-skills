@@ -38,6 +38,26 @@ Replace bracketed text with your details. Always name whether the assistant may 
 
 > Use the DotMD Arts skill. Read “\[Art title\]” and inspect \[criteria\]. Add focused component comments on its current revision using the package's component IDs. Do not change the package, re-create existing threads, or publish. Separate issues you verified in the rendered Art from issues found in the package.
 
+## Procedural Arts and embedding
+
+Discover the connected MCP catalog and schemas before using these workflows. If the required tool is unavailable, report that limit; installing a skill does not deploy a hosted capability.
+
+### Explore a procedural product
+
+> Discover the available 3D runtimes and prepare the product-showcase starter. Use illustrative geometry and labelled controls. Show the proposal before saving it; check responsive and 390px previews in light and dark. Preserve the runtime declaration when refining the material choices.
+
+### Explain a spatial relationship
+
+> Prepare the spatial-diagram starter for the concepts I provide. Keep a readable parallel list of nodes and relationships, native selection controls, and an explanation outside the canvas. Use sample labels only when real source content is missing, and identify them as illustrative.
+
+### Demonstrate bounded motion
+
+> Prepare the interactive-simulation starter with labelled inputs, pause, Reset view, and a reduced-motion alternative. Explain what the model illustrates. Verify the controls before claiming that the simulation works.
+
+### Put an existing Art in a Doc
+
+> Read the named Art and Doc. Enable embedding only if my request authorizes the owner action, then insert its canonical Doc iframe in the requested passage while preserving neighboring content. Keep current Art access. Do not publish or share either artifact as part of this insertion. Read the Doc back and check the rendered iframe.
+
 ## Prepare for publishing
 
 > Inspect “\[item\]” for public release. Check sensitive information, internal links, draft comments, structure, accessibility, and media. Do not publish. Return blockers and a final pre-publication checklist.

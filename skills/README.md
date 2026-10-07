@@ -5,12 +5,14 @@ Seven skills cover Docs, Slides, Sheets, Arts, and the collaboration and connect
 | Skill | Best for |
 | --- | --- |
 | [dotmd](dotmd/SKILL.md) | General DotMD routing and safety |
-| [dotmd-docs](dotmd-docs/SKILL.md) | Drafting, editing, and reviewing Docs |
+| [dotmd-docs](dotmd-docs/SKILL.md) | Drafting, editing, reviewing Docs, and inserting canonical Art embeds |
 | [dotmd-slides](dotmd-slides/SKILL.md) | Presentation narratives and deck QA |
 | [dotmd-sheets](dotmd-sheets/SKILL.md) | Structured data, formulas, and charts |
-| [dotmd-arts](dotmd-arts/SKILL.md) | Interactive visuals, UX mocks, and safe Art revisions |
+| [dotmd-arts](dotmd-arts/SKILL.md) | Interactive visuals, procedural 3D starters, safe revisions, PNG/HTML exports, and owner opt-in embedding |
 | [dotmd-collaboration](dotmd-collaboration/SKILL.md) | Comments, mentions, roles, and review |
 | [dotmd-github-sync](dotmd-github-sync/SKILL.md) | GitHub-connected Markdown workflows |
+
+Discover the connected MCP catalog and input schemas before using a capability. A starter is a proposal, MCP content writers save explicitly, and embedding grants no access or publication. Source/package verification is separate from hosted feature deployment and npm publication; installing a skill does not deploy its tools.
 
 ## Use a skill
 

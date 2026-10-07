@@ -29,14 +29,19 @@ Choose an export based on what the recipient needs:
 | --- | --- |
 | Docs and Slides | Markdown and PDF |
 | Sheets | Markdown with formulas, Markdown with evaluated values, CSV, TSV, and PDF |
+| Arts | PNG and standalone HTML, when available for the accepted revision |
 
 Markdown preserves portable content. A Sheet workbook export can retain tabs and formatting; CSV/TSV exports the active sheet's evaluated values for interchange. PDF provides a reading or printing copy and requires an eligible plan. Export availability can also depend on content and connection status; use the options shown in the current editor.
 
-Supported imports do not imply matching office exports: the web export menus do not offer DOCX, PPTX, or XLSX. Slides file import uses Markdown. Through MCP, discover the formats offered by `file_export`; those options differ from the web menu. HTML is an MCP export option for supported content, not a web export menu item.
+Supported imports do not imply matching office exports: the web export menus do not offer DOCX, PPTX, or XLSX. Slides file import uses Markdown. Through MCP, discover the formats offered by `file_export`; those options differ from the web menu. Docs, Slides, and Sheets retain their existing Markdown, print-ready HTML, and PDF output contracts; their HTML option is available through MCP rather than their web export menus.
 
 ## Arts packages
 
-Arts use self-contained HTML packages. Through MCP, use `art_read` to retrieve the saved package and `art_create` or `art_update` to save a validated package. Use the current revision ID when updating. The Arts tools do not offer general file import or office/Markdown export, and `file_export` does not export Arts.
+Arts use governed, self-contained HTML packages. Through MCP, use `art_read` to retrieve the saved package and `art_create` or `art_update` to save a validated package. Use the current revision ID when updating. The Arts tools do not offer general file import or office/Markdown export.
+
+Discover the connected catalog before using Arts export tools; a local skills/package candidate does not prove hosted availability. On an eligible account, `file_export` accepts `format: "png"` or `"html"` with the current accepted `revisionId` from `art_read`. PNG uses integer dimensions from 320 to 4096, at most 8,388,608 pixels, and `appearance: "original"` or `light`, `paper`, `mist`, `dark`, `black`, or `dusk`. HTML uses no dimensions. Stale revisions are refused. PNG renders a fresh accepted scene; it does not capture an unsaved camera position.
+
+Arts exports return authorized job metadata. Use `file_export_get_job` for an explicit status read when needed, without polling. Once ready, `file_export_download` returns base64 chunks: decode and concatenate the bytes in offset order, advance by returned `byteLength`, and stop at `eof`. The default chunk is 65,536 bytes and the maximum requested chunk is 262,144 bytes. Eligibility and current access are rechecked on download. Verify the PNG dimensions and visible scene, or open the standalone HTML with network blocked. Delivered copies cannot be revoked.
 
 `art_publish` returns a public viewing URL, not an exported file. See [Arts](arts.md) for fragment and bundle authoring, runtime limits, and review.
 
