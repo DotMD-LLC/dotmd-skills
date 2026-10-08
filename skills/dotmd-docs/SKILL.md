@@ -26,7 +26,7 @@ description: Create, edit, organize, summarize, and review Markdown-native DotMD
 - Mark assumptions and unresolved decisions explicitly.
 - Do not invent facts, sources, owners, or dates.
 
-To embed a DotMD Art, discover the connected schemas, read it with `art_read`, and use its canonical `embedding.docEmbedUrl`. The owner must have enabled **Allow embedding**; the Doc does not grant access to the Art. Insert the returned canonical URL or iframe through the existing embed flow, or include a sanitized iframe in authorized Markdown edits. Preserve its `/embed/art/` route, accessible title, `sandbox="allow-scripts"`, `referrerpolicy="no-referrer"`, and responsive dimensions. Keep ordinary `/doc/` links as links. Request publishing only when the user explicitly asks for external access; never publish an Art just because its Doc is public.
+To embed a DotMD Art, discover the connected schemas, read it with `art_read`, and use its canonical `embedding.docEmbedUrl`, which is the normal `/doc/<art-id>` link. The owner must have enabled **Allow embedding**; the Doc does not grant access to the Art. Paste that link into **Insert embed**. For an iframe in authorized Markdown edits, use `/doc/<art-id>?embed=1`, an accessible title, `sandbox="allow-scripts"`, `referrerpolicy="no-referrer"`, and responsive dimensions. Existing `/embed/art/` references remain supported. Ordinary links outside the embed flow remain links; this support is currently for Arts. Request publishing only when the user explicitly asks for external access; never publish an Art just because its Doc is public.
 
 ## Editing
 

@@ -32,7 +32,7 @@ Unpublishing changes the public page's availability. It does not revoke direct o
 
 Only the Art owner can enable **Allow embedding**, through the web control or the advertised `art_embedding` tool. Ordinary Art package creation and updates cannot enable it. Owner opt-in does not grant access, change sharing, or publish the Art.
 
-For an internal Doc, use the canonical `embedding.docEmbedUrl` returned by `art_read`. Private, shared, and namespace Arts remain subject to each viewer's existing Art access. A Doc link or a public Doc does not grant that access or publish the embedded Art.
+For an internal Doc, paste the normal `/doc/<art-id>` link from `embedding.docEmbedUrl` returned by `art_read` into **Insert embed**. Iframes use that route with `?embed=1`. Private, shared, and namespace Arts remain subject to each viewer's existing Art access. A Doc link or a public Doc does not grant that access or publish the embedded Art.
 
 External iframe HTML is available from `embedding.externalIframeHtml` only for an already published personal Art with embedding enabled. Namespace Arts support internal embedding and cannot be published through `art_embedding` or `art_publish`. Do not publish or share an Art merely to insert it in a Doc; external publication requires the user's explicit instruction for that Art.
 
