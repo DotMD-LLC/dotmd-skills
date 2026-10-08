@@ -28,6 +28,16 @@ Review the content and its media for private information, check the public readi
 
 Unpublishing changes the public page's availability. It does not revoke direct or link access, and previous copies or third-party caches may remain.
 
+## Art embedding
+
+Only the Art owner can enable **Allow embedding**, through the web control or the advertised `art_embedding` tool. Ordinary Art package creation and updates cannot enable it. Owner opt-in does not grant access, change sharing, or publish the Art.
+
+For an internal Doc, use the canonical `embedding.docEmbedUrl` returned by `art_read`. Private, shared, and namespace Arts remain subject to each viewer's existing Art access. A Doc link or a public Doc does not grant that access or publish the embedded Art.
+
+External iframe HTML is available from `embedding.externalIframeHtml` only for an already published personal Art with embedding enabled. Namespace Arts support internal embedding and cannot be published through `art_embedding` or `art_publish`. Do not publish or share an Art merely to insert it in a Doc; external publication requires the user's explicit instruction for that Art.
+
+Disabling embedding stops future authorized loads. Previously delivered bytes and downloaded copies remain with recipients. See [Arts](arts.md) for canonical iframe insertion and verification.
+
 ## Ask an AI assistant
 
 Name the item, person or audience, role, and desired action. An instruction such as “Share this Sheet with Sam as a Commenter” authorizes that specific change; the assistant should not ask for the same authorization again.

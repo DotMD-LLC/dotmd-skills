@@ -1,6 +1,6 @@
 # Arts
 
-Arts are interactive visuals saved as first-class DotMD files: UX mocks, visual reports, invitations, calculators, and small demos. People and connected AI can review the same Art with comments, versions, permissions, and sharing.
+Arts are governed, self-contained HTML experiences saved as first-class DotMD files: UX mocks, visual reports, invitations, calculators, procedural 3D scenes, and small demos. People and connected AI can review the same Art with comments, versions, permissions, and sharing.
 
 An Art contains self-contained HTML, CSS, and optional JavaScript. Choose a Doc for prose, Slides for a presentation, or a Sheet for a working dataset.
 
@@ -18,10 +18,12 @@ Use **Create / refine** for follow-up changes and **Version history** to review 
 
 ## Work with an AI client through MCP
 
-The connected assistant writes the package. Despite its name, `art_generate` prepares a supplied package; it does not call an AI model.
+Discover the connected catalog and input schemas first; tools below are usable only when advertised by that connection. Installing skills or building a package candidate does not deploy the hosted web, MCP, or renderer features, or publish the package to npm. The connected assistant writes the package. Despite its name, `art_generate` prepares a supplied package; it does not call an AI model.
 
 | Tool | Use it to |
 | --- | --- |
+| `art_runtime_list` | Discover exact approved runtime declarations and starter IDs |
+| `art_starter` | Prepare a procedural 3D package without saving or calling a model |
 | `art_validate` | Check a proposed package and return issues or a normalized package |
 | `art_generate` | Validate and canonicalize a package authored by the assistant |
 | `art_create` | Save a new Art with a title and optional authorized namespace |
@@ -29,12 +31,50 @@ The connected assistant writes the package. Despite its name, `art_generate` pre
 | `art_update` | Save a replacement package using the current revision ID |
 | `art_comment_add` | Pin feedback to a component in the current revision |
 | `art_publish` | Publish a personal Art owned by the connected account |
+| `art_embedding` | Enable or disable embedding as the owner without publishing or granting access |
+| `file_export` | Export an accepted Art revision to PNG or portable HTML on an eligible account |
+| `file_export_get_job` | Explicitly read one authorized export status |
+| `file_export_download` | Retrieve bounded byte chunks from a completed authorized export |
 
 For an update, the assistant reads the Art first, validates the revised package, then passes the returned `revisionId` to `art_update`. Stale updates are refused. The assistant must reconcile the latest content before retrying. A `null` revision ID is used only when the Art is empty.
 
 MCP creation and updates save directly; they do not create a pending **Accept Art** proposal in the web app. Tell the assistant whether to save changes or prepare a preview for review. It should read the result back and distinguish package validation from a rendered interaction check.
 
 Use the [DotMD Arts skill](../skills/dotmd-arts/SKILL.md) for package authoring. Discover current tool schemas in your connected client; access is limited by the account, role, namespace, and MCP scope.
+
+## Procedural 3D
+
+Use `art_runtime_list` to obtain an approved runtime's exact `{id, contentHash}` declaration and available starter IDs. The approved runtime supplies three.js and matching camera controls inside the sandbox. Do not invent a content hash, runtime version, or CDN URL. Preserve the declaration when refining an existing scene.
+
+`art_starter` takes `starterId: "product-showcase"`, `"spatial-diagram"`, or `"interactive-simulation"` and returns a package and prompt for review. It does not call a model or save content. In the web app, review starters and AI proposals before **Accept Art**. Through MCP, validate the proposal and save explicitly with `art_create` or revision-aware `art_update` when authorized.
+
+Use illustrative geometry when source assets are missing and label it clearly. Keep semantic explanations, selection controls, camera controls, pause, and Reset view available as labelled native controls outside the canvas. Respect reduced motion and include readable fallback content when WebGL 2 is unavailable. Check keyboard operation, responsive and 390px previews, and light/dark appearance.
+
+## View and export
+
+Art viewing URLs use the presence of `fc` for full mode and `viewport=mobile` for a 390px preview. Remove `fc` to exit full mode; absent or unknown viewport values use responsive preview. Preserve unrelated query parameters and the hash when changing these options.
+
+Export the accepted Art as PNG or standalone HTML through the web export controls when available. PNG captures a fresh scene from the saved revision, so an unsaved camera position is not included. Choose Original or one of DotMD's six palettes: light, paper, mist, dark, black, or dusk.
+
+Through MCP, read the Art and pass its `docId` and current `revisionId` to `file_export` with `format: "png"` or `"html"`. PNG requires integer `width` and `height` from 320 to 4096, capped at 8,388,608 pixels. Both formats accept `appearance: "original"` or a palette name, defaulting to `original`; HTML omits dimensions. Changed revisions are refused. Export requires a current Premium plan and Art access.
+
+The result is export job metadata. If needed, read status explicitly with `file_export_get_job({docId, jobId})`; do not poll. When ready, use `file_export_download({docId, jobId, offset, length})`. `offset` defaults to 0; requested `length` is an integer from 1 to 262,144 bytes, defaulting to 65,536. Decode each `base64` chunk and concatenate bytes in offset order, advancing by returned `byteLength` until `eof`. Do not concatenate base64 strings. An offset at `totalBytes` returns empty EOF. These export tools allow read-only scope; creation, status reads, and downloads recheck the current Premium plan and Art access. Status and downloads also require ownership of that export job. Metadata exposes no storage key or bearer download URL; missing, expired, and inaccessible jobs receive a safe refusal. Inspect PNG dimensions and the visible scene, or open HTML with network blocked, before claiming the copy is usable. Delivered copies cannot be revoked.
+
+## Embed in a Doc or website
+
+The Art owner enables **Allow embedding**, or uses `art_embedding({docId, enabled: true})` when that owner action is authorized. Ordinary package creation and updates cannot enable it. This setting changes neither sharing nor publishing.
+
+Read `art_read` and use the returned `embedding.docEmbedUrl` for a Doc. Each viewer still needs independent access to the Art. Insert the canonical URL through the Doc embed flow or use a sanitized iframe in authorized Markdown edits. The following illustrates the shape only: replace its sample URL with the actual canonical URL returned for your Art; `art-scene` is not an existing document.
+
+```html
+<iframe src="https://dotmd.co/embed/art/art-scene"
+  title="Interactive Art" width="960" height="540" loading="lazy"
+  sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+```
+
+Keep the `/embed/art/` route, accessible title, scripts-only sandbox, no-referrer policy, and responsive dimensions. Ordinary `/doc/` links remain links.
+
+External website embedding uses `embedding.externalIframeHtml` only for an already published personal Art. Namespace Arts support internal embedding under current access; they cannot be published through `art_embedding` or `art_publish`. A public Doc does not publish its Art. Disabling embedding stops future authorized loads; previously delivered bytes remain with recipients. See [Sharing and publishing](sharing-and-publishing.md).
 
 ## Package formats
 

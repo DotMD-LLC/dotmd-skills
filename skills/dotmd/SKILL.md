@@ -24,6 +24,9 @@ Use this skill when a request spans DotMD or when a more specialized DotMD skill
 - Presentations: use `dotmd-slides`.
 - Tables, formulas, or charts: use `dotmd-sheets`.
 - Interactive HTML experiences: use `dotmd-arts`.
+- Procedural 3D proposals: discover `art_runtime_list` and `art_starter`, then use `dotmd-arts`; starters do not save or call a model.
+- Arts PNG or standalone HTML exports: use `dotmd-arts` with the advertised `file_export`, `file_export_get_job`, and `file_export_download` schemas and the accepted revision.
+- Art embedding: use owner-only `art_embedding` when authorized, then the canonical metadata from `art_read`; embedding grants no access and does not publish.
 - Comments, review, or access: use `dotmd-collaboration`.
 - Repository synchronization: use `dotmd-github-sync`.
 
