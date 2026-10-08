@@ -54,7 +54,7 @@ Use illustrative geometry when source assets are missing and label it clearly. K
 
 Art viewing URLs use the presence of `fc` for full mode and `viewport=mobile` for a 390px preview. Remove `fc` to exit full mode; absent or unknown viewport values use responsive preview. Preserve unrelated query parameters and the hash when changing these options.
 
-Export the accepted Art as PNG or standalone HTML through the web export controls when available. PNG captures a fresh scene from the saved revision, so an unsaved camera position is not included. Choose Original or one of DotMD's six palettes: light, paper, mist, dark, black, or dusk.
+Open **Export** in the Art header and download the accepted Art as standalone HTML, or PNG when available. Standalone HTML is the default. PNG is disabled when the environment's Art renderer is unavailable. PNG captures a fresh scene from the saved revision, so an unsaved camera position is not included. Choose Original or one of DotMD's six palettes: light, paper, mist, dark, black, or dusk. If an export limit is reached, wait for the displayed retry time.
 
 Through MCP, read the Art and pass its `docId` and current `revisionId` to `file_export` with `format: "png"` or `"html"`. PNG requires integer `width` and `height` from 320 to 4096, capped at 8,388,608 pixels. Both formats accept `appearance: "original"` or a palette name, defaulting to `original`; HTML omits dimensions. Changed revisions are refused. Export requires a current Premium plan and Art access.
 
@@ -64,15 +64,15 @@ The result is export job metadata. If needed, read status explicitly with `file_
 
 The Art owner enables **Allow embedding**, or uses `art_embedding({docId, enabled: true})` when that owner action is authorized. Ordinary package creation and updates cannot enable it. This setting changes neither sharing nor publishing.
 
-Read `art_read` and use the returned `embedding.docEmbedUrl` for a Doc. Each viewer still needs independent access to the Art. Insert the canonical URL through the Doc embed flow or use a sanitized iframe in authorized Markdown edits. The following illustrates the shape only: replace its sample URL with the actual canonical URL returned for your Art; `art-scene` is not an existing document.
+In **Share**, choose **Copy Art link**, then paste the normal `/doc/<art-id>` link into a Doc's **Insert embed** flow. Through MCP, use `embedding.docEmbedUrl` returned by `art_read`. Each viewer still needs independent access to the Art. For an iframe in authorized Markdown edits, add `?embed=1` to the normal Art link. The following illustrates the shape only: replace its sample ID with your actual Art ID; `art-scene` is not an existing document.
 
 ```html
-<iframe src="https://dotmd.co/embed/art/art-scene"
+<iframe src="https://dotmd.co/doc/art-scene?embed=1"
   title="Interactive Art" width="960" height="540" loading="lazy"
   sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
 ```
 
-Keep the `/embed/art/` route, accessible title, scripts-only sandbox, no-referrer policy, and responsive dimensions. Ordinary `/doc/` links remain links.
+Keep the accessible title, scripts-only sandbox, no-referrer policy, and responsive dimensions. Existing `/embed/art/` references remain supported. Ordinary links outside **Insert embed** remain links. This embedding support is currently for Arts; Sheets and Slides do not become embeddable through this parameter.
 
 External website embedding uses `embedding.externalIframeHtml` only for an already published personal Art. Namespace Arts support internal embedding under current access; they cannot be published through `art_embedding` or `art_publish`. A public Doc does not publish its Art. Disabling embedding stops future authorized loads; previously delivered bytes remain with recipients. See [Sharing and publishing](sharing-and-publishing.md).
 
